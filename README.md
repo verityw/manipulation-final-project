@@ -24,6 +24,8 @@ robot joint angle commands needed to move the gripper along the interpolated tra
 that do not need to be precisely constrained for the given manipulation task. Combined with the interpolation function using the soup can's
 pose to generate a keyframe, this allows the robot to grasp the soup can in a variety of poses.
 
+![](placeupright_demo.gif)
+
 ## References
 * [ ] Include references for PoseCNN (https://arxiv.org/abs/1711.00199)
 * [ ] Include references for Inverse Graphics
