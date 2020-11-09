@@ -7,11 +7,15 @@ at MIT in the Fall 2020 semester. The code is divided into several notebooks whi
 This code modifies the notebooks presented in the [class's online textbook](http://manipulation.csail.mit.edu/Fall2020/). 
 
 ## Contents
-1. TO DO: Fill out
+1. [PoseCNN](#posecnn)
+0. [Inverse Graphics Pose Refinements](#inverse-graphics-pose-refinements)
+0. [Upright Placing](#upright-placing)
+0. [References](#references)
 
 ## PoseCNN
 
 ## Inverse Graphics Pose Refinements
+This section is Will's final project for 9.66/6.804 - Computational Cognitive Science, taught by Dr. Joshua Tenenbaum at MIT for the Fall 2020 semester.
 
 ## Upright Placing
 `PlaceUpright.ipynb` sets up the simulated 7-degree of freedom robot manipulator in a custom environment containing a bin and a table, with 
