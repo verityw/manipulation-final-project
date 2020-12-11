@@ -1,4 +1,4 @@
-# 6.881 - Robot Manipulation Final Project: Deep Pose Estimation, Path Planning, and Inverse Kinematics for Visual Upright Pick-and-place of the YCB Soup Can
+# Deep Pose Estimation, Path Planning, and Inverse Kinematics for Visual Upright Pick-and-place of the YCB Soup Can
 
 ## William Chen and Alex Cuellar
 
