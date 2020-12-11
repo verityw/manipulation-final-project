@@ -1,4 +1,4 @@
-# 6.881 - Robot Manipulation Final Project
+# 6.881 - Robot Manipulation Final Project: Deep Pose Estimation, Path Planning, and Inverse Kinematics for Visual Upright Pick-and-place of the YCB Soup Can
 
 ## William Chen and Alex Cuellar
 
@@ -7,15 +7,21 @@ at MIT in the Fall 2020 semester. The code is divided into several notebooks whi
 This code modifies the notebooks presented in the [class's online textbook](http://manipulation.csail.mit.edu/Fall2020/). 
 
 ## Contents
-1. [PoseCNN](#posecnn)
-0. [Inverse Graphics Pose Refinements](#inverse-graphics-pose-refinements)
+1. [Data Generation](#data-generation)
+0. [Mask R-CNN and ICP](#mask-r-cnn-and-icp)
+0. [Pose Interpreter Network](#pose-interpreter-network)
 0. [Upright Placing](#upright-placing)
-0. [References](#references)
+0. [Integration Pipeline](#integration-pipeline)
 
-## PoseCNN
+## Data Generation
+The synthetic data generation code in `DataGeneration.ipynb` makes use of the Drake simulation environment to create a virtual bin, wherein a soup can from the YCB dataset is spawned in a random pose and the simulator advances one second. Drake's renderer capabilities then allow for an image to be taken of the bin, returning an RGBA/D image or object segmentation mask. Similarly, the ground truth pose of the can is saved as a 7-element vector (cartesian position and quaternion rotation). This allows for the easy generation of labelled training and validation data, used in the neural networks below.
 
-## Inverse Graphics Pose Refinements
-This section is Will's final project for 9.66/6.804 - Computational Cognitive Science, taught by Dr. Joshua Tenenbaum at MIT for the Fall 2020 semester.
+## Mask R-CNN and ICP
+
+## Pose Interpreter Network
+The pose interpreter network in `PoseInterpreterNetwork.ipynb` is based off of the architecture in [\[Wu, et al., 2018\]](https://arxiv.org/abs/1808.01099). It extends the ResNet18 architecture with a branching multilayer perceptron to estimate the 6-degree of freedom pose of an observed object of interest (in this case, the YCB dataset's soup can) -- i.e. cartesian position and quaternion orientation. It was trained using the second loss presented in \[Wu, et al., 2018\]. The full architecture is presented below.
+
+![](poseinterpreternet.png)
 
 ## Upright Placing
 `PlaceUpright.ipynb` sets up the simulated 7-degree of freedom robot manipulator in a custom environment containing a bin and a table, with 
@@ -30,6 +36,7 @@ pose to generate a keyframe, this allows the robot to grasp the soup can in a va
 
 ![](placeupright_demo.gif)
 
-## References
-* [ ] Include references for PoseCNN (https://arxiv.org/abs/1711.00199)
-* [ ] Include references for Inverse Graphics
+## Integration Pipeline
+We integrated our pose estimation methods with the upright pick-and-place system in `Integration.ipynb`. After the can is spawned in the bin, an image is taken of it and fed into one of our pose estimators. This pose estimation is used to compute the grasp pose for the subsequent manipulation task. The entire pipeline thus demonstrates upright pick-and-place with just visual sensor data.
+
+![](pipeline.png)
